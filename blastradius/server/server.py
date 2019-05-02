@@ -70,7 +70,7 @@ def graph_json():
     return dot.json()
 
 def run_tf_graph():
-    completed = subprocess.run(['terraform', 'graph'], stdout=subprocess.PIPE)
+    completed = subprocess.run(['terragrunt', 'graph'], stdout=subprocess.PIPE)
     if completed.returncode != 0:
         raise
     return completed.stdout.decode('utf-8')
@@ -81,13 +81,13 @@ def get_help():
              'cwd'        : os.getcwd() }
 
 def get_terraform_version():
-    completed = subprocess.run(['terraform', '--version'], stdout=subprocess.PIPE)
+    completed = subprocess.run(['terragrunt', '--version'], stdout=subprocess.PIPE)
     if completed.returncode != 0:
         raise
     return completed.stdout.decode('utf-8').splitlines()[0].split(' ')[-1]
     
 def get_terraform_exe():
-    return which('terraform')
+    return which('terragrunt')
 
 
 
